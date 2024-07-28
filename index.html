@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Online</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="bg-danger text-white p-3 text-center">
+        <h1>Shop Online</h1>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+            <div class="container">
+                <a class="navbar-brand" href="#">Trang chủ</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#products">Sản phẩm</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="cart-toggle">Giỏ hàng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="showLogin()">Đăng nhập</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="showRegister()">Đăng ký</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="container mt-5">
+        <section id="products" class="row">
+            <!-- Repeat this block for more products -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="images/placeholder.png" class="card-img-top" alt="Product Image" width="460" height="280">
+                    <div class="card-body">
+                        <h5 class="card-title">Thức ăn cho mèo zoi cat 1kg</h5>
+                        <p class="card-text">Giá: 59,000 VND</p>
+                        <button class="btn btn-danger btn-block" onclick="addToCart('Sản phẩm 1', 59000)">Thêm vào giỏ hàng</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="images/placeholder_01.png" class="card-img-top" alt="Product Image" width="460" height="280">
+                    <div class="card-body">
+                        <h5 class="card-title">Áo Thun AM Tay Lỡ PHỐI MÀU Form Rộng</h5>
+                        <p class="card-text">Giá: 110,000 VND</p>
+                        <button class="btn btn-danger btn-block" onclick="addToCart('Sản phẩm 2', 110000)">Thêm vào giỏ hàng</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="images/placeholder_02.png" class="card-img-top" alt="Product Image" width="460" height="280">
+                    <div class="card-body">
+                        <h5 class="card-title">Quần Short thun DREW</h5>
+                        <p class="card-text">Giá: 99,000 VND</p>
+                        <button class="btn btn-danger btn-block" onclick="addToCart('Sản phẩm 3', 99000)">Thêm vào giỏ hàng</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="images/placeholder_03.png" class="card-img-top" alt="Product Image" width="460" height="280">
+                    <div class="card-body">
+                        <h5 class="card-title">Vòng tay Chuông giác quan May mắn</h5>
+                        <p class="card-text">Giá: 180,000 VND</p>
+                        <button class="btn btn-danger btn-block" onclick="addToCart('Sản phẩm 4', 180000)">Thêm vào giỏ hàng</button>
+                    </div>
+                </div>
+            </div>
+			<div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="images/placeholder_04.png" class="card-img-top" alt="Product Image" width="460" height="280">
+                    <div class="card-body">
+                        <h5 class="card-title">Pate Neeka thơm ngon cho Chó và Mèo</h5>
+                        <p class="card-text">Giá: 7,000 VND</p>
+                        <button class="btn btn-danger btn-block" onclick="addToCart('Sản phẩm 5', 7000)">Thêm vào giỏ hàng</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more product blocks as needed -->
+        </section>
+    </main>
+    <aside id="cart" class="cart bg-light border-left shadow">
+        <h2 class="text-center p-3 border-bottom">Giỏ hàng</h2>
+        <ul class="list-group cart-items" id="cart-items"></ul>
+        <div class="p-3 border-top">
+            <p class="d-flex justify-content-between">
+                <span>Tổng:</span>
+                <span id="total-price">0</span> VND
+            </p>
+            <input type="text" class="form-control mb-3" id="voucher" placeholder="Nhập mã giảm giá">
+            <button class="btn btn-primary btn-block" onclick="applyVoucher()">Áp dụng</button>
+            <button class="btn btn-success btn-block" onclick="checkout()">Thanh toán</button>
+        </div>
+    </aside>
+    <div id="login-modal" class="modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Đăng nhập</h5>
+                    <button type="button" class="close" onclick="closeModal('login-modal')">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control mb-3" id="login-username" placeholder="Tên đăng nhập">
+                    <input type="password" class="form-control mb-3" id="login-password" placeholder="Mật khẩu">
+                    <button class="btn btn-primary btn-block" onclick="login()">Đăng nhập</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="register-modal" class="modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Đăng ký</h5>
+                    <button type="button" class="close" onclick="closeModal('register-modal')">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control mb-3" id="register-username" placeholder="Tên đăng nhập">
+                    <input type="password" class="form-control mb-3" id="register-password" placeholder="Mật khẩu">
+					<input type="password" class="form-control mb-3" id="register-confirm-password" placeholder="Nhập lại mật khẩu">
+					<input type="text" class="form-control mb-3" id="register-name" placeholder="Họ và tên">
+                    <input type="text" class="form-control mb-3" id="register-address" placeholder="Địa chỉ">
+                    <input type="text" class="form-control mb-3" id="register-phone" placeholder="Số điện thoại">
+                    <button class="btn btn-primary btn-block" onclick="register()">Đăng ký</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
+
